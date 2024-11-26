@@ -1,0 +1,481 @@
+/*  --------------------------------- Main  ---------------------------------*/
+.main {
+  background-image: url(./images/bg-1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  gap: 0px;
+}
+
+/*  --------------------------------- Main Flex Items  ---------------------------------*/
+.main>* {
+  position: relative;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.atm {
+  background-image: url("./images/atm.jpg");
+  height: 748px;
+  width: 548px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mobile {
+  background-image: url("./images/mobile.svg");
+  height: 662px;
+  width: 548px;
+  margin-top: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.tv {
+  background-image: url("./images/tv.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 350px;
+  width: 600px;
+  margin-top: 20px;
+}
+
+/*  ---------------------------------  ATM  ---------------------------------*/
+.atm>.screen {
+  height: 200px;
+  width: 260px;
+  position: absolute;
+  top: 220px;
+  left: 100px;
+  background-color: #fff;
+  box-shadow: 0 0 7.5px 3.25px #fff, 0 0 15px 7.5px #f0f, 0 0 22.5px 11.25px #0ff;
+  text-shadow: 1px 1px 2px lightgrey, 0 0 1em grey, 0 0 0.2em black
+}
+
+
+/*  --------------------------------- Mobile  ---------------------------------*/
+
+.mobile>.screen {
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 500px;
+  width: 548px;
+}
+
+.mobile>h1 {
+  position: absolute;
+  width: 200px;
+  left: 190px;
+  top: 60px;
+  font-size: 15px;
+  color: lightgreen;
+  text-align: center;
+}
+
+.mobile>p {
+  position: absolute;
+  left: 190px;
+  width: 200px;
+  top: 90px;
+  font-size: 16px;
+  color: green;
+  text-align: center;
+}
+
+.mobile .screen a {
+  background-color: lightblue;
+  border: 1px solid black;
+  padding: 2px;
+  color: #171717;
+  font-size: larger;
+  font-weight: 900;
+  border-radius: 6px;
+  text-decoration: none;
+
+}
+
+.mobile>.screen>input {
+  position: absolute;
+  top: 250px;
+  left: 200px;
+  width: 120px;
+  background: none;
+  border: none;
+  background-color: grey;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mobile>.screen>input::placeholder {
+  color: lightgrey;
+  text-align: center;
+}
+
+.mobile>.screen>.username {
+  top: 170px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.mobile>.screen>.password {
+  top: 210px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.mobile>.screen>.file {
+  position: absolute;
+  left: 200px;
+  top: 220px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.mobile>.screen>button {
+  position: absolute;
+  width: 140px;
+  left: 200px;
+  top: 350px;
+  font-size: 16px;
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: active 0.4s;
+}
+
+
+.mobile>.screen>button:hover {
+  color: green;
+  background-color: #fff;
+  border: 2px solid green
+}
+
+.mobile>.screen>button:active {
+  color: #fff;
+  background-color: green;
+  transform: scale(0.98);
+}
+
+
+/*  --------------------------------- HONE PAGE  ---------------------------------*/
+.NavList {
+  display: flex;
+  gap: 3px;
+  font-size: 12px;
+  position: absolute;
+  top: 65px;
+  left: 150px;
+}
+
+.navItem {
+  background-color: lightblue;
+  border: 1px solid black;
+  padding: 2px;
+  color: #171717;
+  font-size: larger;
+  font-weight: 900;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.available {
+  position: absolute;
+  top: 110px;
+  left: 170px;
+  border: 1px solid beige;
+  height: 150px;
+  width: 200px;
+}
+
+.transaction {
+  position: absolute;
+  top: 280px;
+  left: 170px;
+  border: 1px solid beige;
+  height: 150px;
+  width: 200px;
+  font-size: 10px;
+}
+
+.available h1 {
+  font-size: 15px;
+  color: lightgreen;
+  text-align: center;
+}
+
+.mobile p {
+  font-size: 16px;
+  color: green;
+  text-align: center;
+}
+
+.transaction>.type {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.transaction .amount {
+  display: block;
+  margin: 10px;
+}
+
+.transaction button {
+  margin-left: 60px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: active 0.4s;
+}
+
+
+.transaction button:hover {
+  color: green;
+  background-color: #fff;
+  border: 2px solid green
+}
+
+.transaction button:active {
+  color: #fff;
+  background-color: green;
+  transform: scale(0.98);
+}
+
+/*  --------------------------------- TRNSACTION PAGE  ---------------------------------*/
+
+
+.search {
+  display: flex;
+  position: absolute;
+  top: 100px;
+  left: 150px;
+  border: 1px solid beige;
+  height: 40px;
+  width: 245px;
+  gap: 5px;
+}
+
+/* display: flex;
+flex-direction: column;
+gap: 20px; */
+.filter {
+  display: flex;
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  border: 1px solid beige;
+  height: 40px;
+  width: 245px;
+  font-size: 15px;
+}
+
+.from {
+  position: absolute;
+  top: 50px;
+  left: 4px;
+  width: 80px;
+}
+
+.to {
+  position: absolute;
+  top: 50px;
+  left: 120px;
+  width: 80px;
+}
+
+.transactions-list {
+  position: absolute;
+  top: 80px;
+  border: 1px solid beige;
+  height: 215px;
+  width: 245px;
+
+}
+
+/*  --------------------------------- USERS PAGE  ---------------------------------*/
+
+.users-list {
+  height: 348px;
+  width: 250px;
+  border: 1px solid beige;
+  position: absolute;
+  top: 100px;
+  left: 148px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0px;
+}
+
+.user-item {
+  height: 60px;
+  width: 50px;
+  border: 1px solid beige;
+  padding: 6px;
+}
+
+/*  --------------------------------- PROFILE PAGE  ---------------------------------*/
+
+.profile {
+  position: absolute;
+  top: 100px;
+  left: 150px;
+  border: 1px solid beige;
+  height: 348px;
+  width: 245px;
+}
+
+/*  --------------------------------- TERMINAL  ---------------------------------*/
+.terminal {
+  height: 300px;
+  width: 600px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  padding: 0 15px;
+  background: #2d2d2d;
+  justify-content: flex-start;
+  gap: 150px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn-color:nth-child(1) {
+  background: #ff5f56;
+}
+
+.btn-color:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.btn-color:nth-child(3) {
+  background: #27c93f;
+}
+
+.user {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.body {
+  background: #1e1e1e;
+  height: calc(100% - 35px);
+  padding: 15px;
+  font-family: "Consolas", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+.terminal_promt {
+  margin-bottom: 10px;
+}
+
+.terminal_promt span {
+  margin-right: 5px;
+}
+
+.tpuser {
+  color: #00ff9c;
+}
+
+.tplocation {
+  color: #0066ff;
+}
+
+.tpbling {
+  color: #ff00ff;
+}
+
+.tpcursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: #ffffff;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

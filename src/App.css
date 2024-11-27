@@ -289,24 +289,27 @@ gap: 20px; */
   top: 150px;
   left: 150px;
   border: 1px solid beige;
-  height: 40px;
+  height: 60px;
   width: 245px;
   font-size: 15px;
 }
 
-.from {
-  position: absolute;
-  top: 50px;
-  left: 4px;
-  width: 80px;
+.filter label {
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 2px;
 }
 
-.to {
-  position: absolute;
-  top: 50px;
-  left: 120px;
-  width: 80px;
+.transaction-date {}
+
+.transaction-from,
+.transaction-to {
+  display: inline-block;
+  width: 120px;
+  margin-left: 2px;
 }
+
+
 
 .transactions-list {
   position: absolute;
@@ -314,8 +317,34 @@ gap: 20px; */
   border: 1px solid beige;
   height: 215px;
   width: 245px;
-
+  overflow: scroll;
 }
+
+.transaction-item {
+  width: 245px;
+  border: 1px solid beige;
+}
+
+.transaction-item .amount {
+  text-align: center;
+  display: inline-block;
+  width: 65px;
+}
+
+
+.transaction-item .type {
+  display: inline-block;
+  text-align: center;
+  width: 65px;
+}
+
+.transaction-item .created {
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+}
+
+
 
 /*  --------------------------------- USERS PAGE  ---------------------------------*/
 

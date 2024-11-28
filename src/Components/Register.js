@@ -22,7 +22,7 @@ const Register = () => {
     return (
         <div className="mobile">
         <h1 className='heading'>Register to your account</h1>
-        <p className='msg'> Already registered ? <br></br> <NavLink to="/Login">Login Here</NavLink></p>
+        <p className='msg'> Already registered ? <br></br> <NavLink to="/Login">Click Here</NavLink></p>
         < Formik
                 initialValues={{ username: "", password: "", image: "" }
                 }

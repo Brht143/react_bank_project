@@ -2,84 +2,59 @@ import { Navigate } from 'react-router'
 import { checkToken } from '../API/storage'
 import Nav from './Nav'
 import React, { useState } from 'react'
-
-
-const handleUsers = () => console.log("Users req")
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { getAllUsers, transfer } from '../API/user'
+import LoadingMobile from './LoadingMobile'
+import MyDetails from './MyDetails'
 
 const Users = () => {
-
-  const [radioOption, setRadioOption] = useState("")
-  const [search, setSearch] = useState("")
-  const [from, setFrom] = useState("")
-  const [to, setTo] = useState("")
-
-
-  if (!checkToken())
-    {
-        return <Navigate to="/login" />
-    }
-    
-
-  const handleClick = (clickedValue) => {
-    setRadioOption(clickedValue)
+  
+  const myUser = MyDetails()
+  const [amount, setAmount] = useState("")
+  const [receiver, setReceiver] = useState("")
+  const transferData = { amount : amount, receiver : receiver, username : ""}
+  
+  const handleSubmit = (receiver) => {
+    transferData.username = myUser.data.username
+    setReceiver(receiver) 
+    mutation.mutate(transferData)
   }
 
-  const handleChange = (changedValue) => {
-    setSearch(changedValue)
-  }
+  const {data, isFetching, isSuccess,refetch, isFetched} = useQuery({
+    queryKey: ["UsersList"],
+    queryFn: getAllUsers,
+    enabled: true,
+  })
 
-  console.log(radioOption)
-  console.log(search)
-  console.log(from)
-  console.log(to)
+  const mutation =  useMutation({
+    mutationKey:["Transfer"],
+    mutationFn: (transferData) => transfer(transferData),
+  })
 
+  if (isFetching) return <LoadingMobile name={"Users"}/>
+
+  const users = data?.map( user => 
+  <div className='user-item'>
+        {/* <div class="user-image">{user.image ? <img src={user.image} alt="Not Available"></img>:"NO IMAGE"}</div> */}
+        <div class="user-image"></div>
+        <div class="user-name">{user.username}</div>
+        <div class="user-balance">{user.balance}</div>
+        <label>
+          <input onChange={(e) => setAmount(e.target.value)} className='amount' type='text'></input>
+          <button onClick={() => handleSubmit(user.username, myUser.data.username)}type='submit'>Transfer</button>
+        </label>
+  </div> )
+
+  if (!checkToken()) return <Navigate to="/login" />
 
     return (
       <div className="main">
-      <div class="mobile">
-        <Nav />
-        <div className='users-list'>
-          <div className="user-item">
-          User1
-          </div> 
-          <div className="user-item">
-          User2
-          </div> 
-          <div className="user-item">
-          User3
-          </div> 
-          <div className="user-item">
-          User4
-          </div>
-          <div className="user-item">
-          User1
-          </div> 
-          <div className="user-item">
-          User2
-          </div> 
-          <div className="user-item">
-          User3
-          </div> 
-          <div className="user-item">
-          User4
-          </div>
-          <div className="user-item">
-          User4
-          </div>
-          <div className="user-item">
-          User1
-          </div> 
-          <div className="user-item">
-          User2
-          </div> 
-          <div className="user-item">
-          User3
-          </div> 
-          <div className="user-item">
-          User4
+        <div class="mobile">
+          <Nav />
+          <div className='users-list'>
+            {users}
           </div>
         </div>
-      </div>
       </div>
   )
 }

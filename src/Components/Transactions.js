@@ -5,6 +5,7 @@ import { getTransactions } from '../API/user'
 import Nav from './Nav'
 import React, { useState } from 'react'
 import { useQuery } from "@tanstack/react-query";
+import LoadingMobile from "./LoadingMobile";
 
 
 const Transactions = () => {
@@ -31,17 +32,12 @@ const Transactions = () => {
   // data._id, data.type, data.amount, data.from, data.to, data.createdAt, data.updatedAt, data.__v >> Object keys
  
   if (isFetching) {
-    return <div>Loading...</div>;
+    return <LoadingMobile name={"Transactions"}/>
   }
 
   // if (isFetched) {
   //   return <div>Success...</div>;
   // }
-
-  // const text = "2024-11-23"
-  // console.log("year", text.substring(0,4))
-  // console.log("month", text.substring(5,7))
-  // console.log("day", text.substring(8,10))
 
   const transactionsType = data?.filter( transaction => transaction.type.includes(type))
   
@@ -63,10 +59,7 @@ const Transactions = () => {
 
  
 
-  if (!checkToken())
-    {
-        return <Navigate to="/login" />
-    }
+  if (!checkToken()) return <Navigate to="/login" />
 
     return (
       <div className="main">
@@ -74,29 +67,34 @@ const Transactions = () => {
         <Nav />
         <div class="search">
           <input onChange={handleSearch} type="text" placeholder='search'></input> 
-          <button>Search</button>
+          {/* <button>Search</button> */}
         </div>
         <div className='filter'>
         <Formik
           initialValues={{transaction: '', }}
     >
+      
         <Form>
-        <label>
-              <Field onClick={handleType} type="radio" name="transaction" value="" className="type"/>
-              All
-            </label>
+        <div class="transaction-type">
+          <div>
             <label>
-              <Field onClick={handleType} type="radio" name="transaction" value="deposit" className="type"/>
-              Deposit
-            </label>
-            <label>
-              <Field onClick={handleType} type="radio" name="transaction" value="withdraw" className="type"/>
-              Withdraw
-            </label>
-            <label>
-              <Field onClick={handleType} type="radio" name="transaction" value="transfer" className="type"/>
-              Transfer
-            </label>
+                  <Field onClick={handleType} type="radio" name="transaction" value="" className="type"/>
+                  <span>All</span>
+                </label>
+                <label>
+                  <Field onClick={handleType} type="radio" name="transaction" value="deposit" className="type"/>
+                  <span>Deposit</span>
+                </label>
+                <label>
+                  <Field onClick={handleType} type="radio" name="transaction" value="withdraw" className="type"/>
+                  <span>Withdraw</span>
+                </label>
+                <label>
+                  <Field onClick={handleType} type="radio" name="transaction" value="transfer" className="type"/>
+                  <span>Transfer</span>
+                </label>
+          </div>
+        </div>
             <div class="transaction-date">
               <label className="transaction-from">
                 From
@@ -106,7 +104,6 @@ const Transactions = () => {
                 To
                 <Field onChange={handleToDate} type="date" name="transaction-to" value="to" className="type"/>
               </label>
-              <button onClick={refetch}></button>
             </div>
         </Form>
     </Formik>

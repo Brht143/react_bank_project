@@ -12,6 +12,7 @@ import Profile from './Components/Profile';
 import Transactions from './Components/Transactions';
 import Users from './Components/Users';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LoadingMobile from './Components/LoadingMobile';
 
 const queryClient = new QueryClient()
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:"/LoadingMobile",
+    element: <LoadingMobile />
   },
   {
     path: "/Register",

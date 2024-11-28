@@ -3,9 +3,18 @@ import instance from "./api"
 // Get your profile
 async function getProfile() {
     const data = await instance.get("mini-project/api/auth/me")
+    console.log("Profile ", data)
+    return data
+}
+
+// Upload Profile Image
+async function uploadProfilePic(image) {
+    console.log("deposit", image)
+    const data = await instance.put("/mini-project/api/auth/profile",image)
     console.log(data)
     return data
 }
+
 
 // Get user info by user userId
 async function getProfileById(userId) {
@@ -17,7 +26,7 @@ async function getProfileById(userId) {
 // Get all users
 async function getAllUsers() {
     const data = await instance.get("mini-project/api/auth/users")
-    console.log(data)
+    console.log("Users List ", data)
     return data
 }
 
@@ -45,4 +54,16 @@ async function withdraw(formData) {
     return data
 }
 
-export { getProfile, getProfileById, getAllUsers, getTransactions, deposit, withdraw };
+// Transfer
+async function transfer(transferData) {
+
+    const requiredData = {
+        amount: transferData.amount,
+        username: transferData.username
+    }
+    const data = await instance.put(`/mini-project/api/transactions/transfer/${transferData.receiver}`, requiredData)
+    console.log("Transfer ", data)
+    return data
+}
+
+export { getProfile, uploadProfilePic,  getProfileById, getAllUsers, getTransactions, deposit, withdraw, transfer };

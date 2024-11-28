@@ -2,17 +2,20 @@ import { Field, Form, Formik } from "formik";
 import { login } from '../API/auth';
 import { useMutation } from '@tanstack/react-query';
 import { NavLink, useNavigate } from 'react-router';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
 
     const navigate = useNavigate()
+
+    const [invalidPass, setInvalidPass] = useState(false)
 
     const mutation = useMutation({
             mutationFn: (formData) => login(formData),
             onSuccess: () => {
                 navigate("/Home")
             },
+            onError: () => setInvalidPass(true)
         })
 
     const handleSubmit = (formData) => {
@@ -24,7 +27,8 @@ const Login = () => {
         <div className="main">
         <div className="mobile">
         <h1 className='heading'>Login to your account</h1>
-        <p className='msg'> not yet registered ? <br></br> <NavLink to="/">Register Here</NavLink></p>
+        <p className='msg'> not yet registered ? <br></br> <NavLink to="/">Click Here</NavLink></p>
+        {/* { !invalidPass && <p>Invalid User or Password</p>} */}
         < Formik
                 initialValues={{ username: "", password: ""}
                 }

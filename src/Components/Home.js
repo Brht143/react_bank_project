@@ -1,18 +1,25 @@
 import { Field, Form, Formik } from "formik";
 import { checkToken } from '../API/storage'
-import { deposit, withdraw } from '../API/user'
+import { deposit, getTransactions, withdraw } from '../API/user'
 import { useNavigate } from 'react-router';
 import Nav from './Nav'
 import React, { useState } from 'react'
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 const Home = () => {
+
+    const handleSubmit = (formData) => {
+      console.log(formData.transactionSwitch)
+      if (formData.transactionSwitch) depositMutation.mutate(formData)
+      else withdrawMutation.mutate(formData)
+    }
 
     const navigate = useNavigate()
 
     const depositMutation = useMutation({
             mutationFn: (formData) => deposit(formData),
             onSuccess: () => {
+                refetch()
                 navigate("/Home")
             },
         })
@@ -20,15 +27,21 @@ const Home = () => {
     const withdrawMutation = useMutation({
             mutationFn: (formData) => withdraw(formData),
             onSuccess: () => {
+                refetch()
                 navigate("/Home")
             },
         })
 
+    const {data, isFetching, isSuccess,refetch, isFetched} = useQuery({
+          queryKey: ["DataList"],
+          queryFn: getTransactions,
+          enabled: true,
+        }) 
+    
+    const initialValue = 0;
+    const balance = data?.map(transaction => transaction.type === "deposit" ? transaction.amount : -transaction.amount)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, initialValue,);
 
-    const handleSubmit = (formData) => {
-            if (formData.transaction === "deposit") depositMutation.mutate(formData)
-            else withdrawMutation.mutate(formData)
-                }
 
     if (!checkToken())
         {
@@ -37,44 +50,33 @@ const Home = () => {
     
     return (
     <div className="main">
-    <div className="mobile">
+      <div className="mobile">
         <Nav />
-    <div className='screen'>
-    <div className="available">
-        <h1>Your Available Balance</h1> 
-        <p>19000 KWD</p>
-        </div>
-    <div className="transaction">
-
-    <Formik
-      initialValues={{
-        transaction: '',
-        amount : ""
-      }}
-      onSubmit={handleSubmit}
-    >
-        <Form>
-            <label>
-              <Field type="radio" name="transaction" value="deposit" className="type"/>
-              Deposit
-            </label>
-            <label>
-              <Field type="radio" name="transaction" value="withdraw" className="type"/>
-              Withdraw
+        <div className='screen'>
+          <div className="available">
+            <h1>Your Available Balance</h1> 
+            <p>{balance} KWD</p>
+          </div>
+        <div className="transaction">
+        <Formik
+          initialValues={{transaction: '',amount : ""}}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <label className="transaction-switch">
+              <Field type="checkbox" name="transactionSwitch"/>
+              <span class="slider"></span>
             </label>
             <label className="amount">
               Amount
               <Field type="text" name="amount"/>
             </label>
-          <button type="submit">Submit</button>
-        </Form>
-    </Formik>
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
     </div>
-
-
-
   </div>
-  </div>
+    </div>
   </div>
   )
 }

@@ -9,7 +9,7 @@ const Nav = () => {
             Home
         </NavLink>
         <NavLink className="navItem" to="/Transactions">
-            Transactions
+            List
         </NavLink>
         <NavLink className="navItem" to="/Users">
             Users

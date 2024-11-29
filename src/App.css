@@ -91,7 +91,9 @@
 /*  --------------------------------- Mobile  ---------------------------------*/
 
 .mobile>.screen {
-
+  position: absolute;
+  top: 110px;
+  left: 170px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -240,18 +242,12 @@
 }
 
 .available {
-  position: absolute;
-  top: 110px;
-  left: 170px;
   box-shadow: var(--box-shadow);
-  height: 150px;
+  height: 100px;
   width: 200px;
 }
 
 .transaction {
-  position: absolute;
-  top: 280px;
-  left: 170px;
   height: 150px;
   width: 200px;
   font-size: 10px;
@@ -379,7 +375,7 @@ input:checked+.slider:after {
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  transition: active 0.4s;
+  transition: active 0.2s;
 }
 
 .transaction button:hover {
@@ -391,6 +387,22 @@ input:checked+.slider:after {
 .transaction button:active {
   color: #fff;
   background-color: green;
+  transform: scale(0.99);
+}
+
+.transaction .logout {
+  color: #fff;
+  background-color: tomato;
+}
+
+.transaction .logout:hover {
+  color: tomato;
+  background-color: #fff;
+}
+
+.transaction .logout:active {
+  color: #fff;
+  background-color: tomato;
   transform: scale(0.98);
 }
 

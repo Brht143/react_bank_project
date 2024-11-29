@@ -90,8 +90,11 @@
 
 /*  --------------------------------- Mobile  ---------------------------------*/
 
-.mobile>.screen {
+.mobile>.position-absolute {
   position: absolute;
+}
+
+.mobile>.screen {
   top: 110px;
   left: 170px;
   display: flex;
@@ -392,17 +395,17 @@ input:checked+.slider:after {
 
 .transaction .logout {
   color: #fff;
-  background-color: tomato;
+  background-color: red;
 }
 
 .transaction .logout:hover {
-  color: tomato;
+  color: red;
   background-color: #fff;
 }
 
 .transaction .logout:active {
   color: #fff;
-  background-color: tomato;
+  background-color: red;
   transform: scale(0.98);
 }
 

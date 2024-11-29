@@ -10,6 +10,7 @@ const Register = () => {
     const mutation = useMutation({
             mutationFn: (formData) => register(formData),
             onSuccess: () => {
+                alert("Registered")
                 navigate("/")
             },
         })

@@ -13,6 +13,7 @@ const Login = () => {
     const mutation = useMutation({
             mutationFn: (formData) => login(formData),
             onSuccess: () => {
+                alert("Logged In")
                 navigate("/Home")
             },
             onError: () => setInvalidPass(true)

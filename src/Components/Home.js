@@ -56,7 +56,7 @@ const Home = () => {
     <div className="main">
       <div className="mobile">
         <Nav />
-        <div className='screen'>
+        <div className='screen position-absolute'>
           <div className="available">
             <h1>Your Available Balance</h1> 
             <p>{balance} KWD</p>
